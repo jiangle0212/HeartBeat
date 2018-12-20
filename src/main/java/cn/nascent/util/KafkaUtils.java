@@ -13,7 +13,6 @@ public class KafkaUtils {
      */
     public static final String BROKER_LIST = "192.168.80.176:9092";
 
-
     /**
      * 消费哪个主题下的消息
      */
