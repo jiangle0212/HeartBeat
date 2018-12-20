@@ -45,10 +45,6 @@ public class App {
             // 所以要确保在轮询期间的工作要尽快完成
             DealWithMessage.dealWithRecords(records);
 
-           /* for (ConsumerRecord record : records) {
-                System.out.printf("offset=%d  , value=%s\n", record.offset(), record.value());
-            }*/
-
         }
     }
 }

@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 功能：保存Application，更新Application的状态
  * <p>
  * 在这里，将所有的应用放在ConcurrentHashMap(高并发容器)中，以应用名为键，以Application类实例为值，因为键是唯一的，
- * 那么就避免了店铺需要注册，因为注册需要遍历所有的店铺。
+ * 那么就避免了店铺需要注册，因为注册需要遍历所有的应用。
  */
 public class ApplicationManager {
 
@@ -58,10 +58,9 @@ public class ApplicationManager {
             System.err.println("应用状态：应用已从植物状态转为存活状态" + application.getAppName());
         }
 
-        System.err.println("心跳信息： 项目名： " + result[0] + "信息: " + result[1] + "  ==>线程名:" + Thread.currentThread().getName());
+        System.err.println("心跳信息： 应用名： " + result[0] + "信息: " + result[1] + "  ==>线程名:" + Thread.currentThread().getName());
         return true;
     }
-
 
     /**
      * 移除一个应用
