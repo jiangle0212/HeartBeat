@@ -35,7 +35,7 @@ public class App {
         kafkaConsumer.subscribe(Arrays.asList(KafkaUtils.HEARTBEAT_TOPIC));
 
         //开始应用状态检测的定时任务
-        QuartzManager.addJob("Status_check", CheckAppStatusJob.class, KafkaUtils.APPLICATION_STATUS_CKECK_INTERVAL);
+        QuartzManager.addJob("Status_Check", CheckAppStatusJob.class, KafkaUtils.APPLICATION_STATUS_CKECK_INTERVAL);
 
         while (true) {
 
