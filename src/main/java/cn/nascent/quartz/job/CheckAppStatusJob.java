@@ -46,7 +46,7 @@ public class CheckAppStatusJob implements Job {
         }
 
         for (String appName : deadAppName) {
-            concurrentHashMap.remove(appName);
+            ApplicationManager.removeApplication(appName);
             FeedBackToKafka.sendMessage(appName);
             System.err.println("应用: " + appName + "已经从系统清除了");
         }

@@ -39,7 +39,7 @@ public class App {
 
         while (true) {
 
-            ConsumerRecords<String, String> records = kafkaConsumer.poll(1000);
+            ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofSeconds(1));
 
             //在这里交由线程池去处理,因为consumer在以此轮询中要发送心跳，群组协调，分区再均衡，获取数据，
             // 所以要确保在轮询期间的工作要尽快完成
