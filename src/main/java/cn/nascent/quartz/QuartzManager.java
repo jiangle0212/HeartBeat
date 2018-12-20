@@ -69,6 +69,10 @@ public class QuartzManager {
 
             Scheduler scheduler = QuartzManager.SCHEDULER_FACTORY.getScheduler();
 
+            if (scheduler == null) {
+                throw new RuntimeException("Scheduller 为空");
+            }
+
             TriggerKey triggerKey = TriggerKey.triggerKey(jobName, QuartzManager.TRIGGER_GROUP_NAME);
             JobKey jobKey = JobKey.jobKey(jobName, QuartzManager.JOB_GROUP_NAME);
 
