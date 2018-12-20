@@ -22,6 +22,9 @@ public class CheckAppStatusJob implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
 
+        //状态校验的开始时间，因为应用里的更新时间是固定的，故所有的应用的参照时间也应该是不变的
+        long checkStartTime = System.currentTimeMillis();
+
         ConcurrentHashMap concurrentHashMap = ApplicationManager.getAllApplication();
         Set<Map.Entry<String, Application>> entrySet = concurrentHashMap.entrySet();
         List<String> deadAppName = new ArrayList<>(10);
@@ -32,7 +35,7 @@ public class CheckAppStatusJob implements Job {
             Application application = entry.getValue();
 
             //@TODO 可能这里的判断不够准确,需要改进
-            if (application.getUpdateTime() + KafkaUtils.HEARTBEAT_PACKET_SEND_INTERVAL < System.currentTimeMillis()) {
+            if (application.getUpdateTime() + KafkaUtils.HEARTBEAT_PACKET_SEND_INTERVAL < checkStartTime) {
 
                 if (application.getAppStatus().getStatusCode().equals(AppStatusEnum.APP_ALIVE.getStatusCode())) {
                     application.setAppStatus(AppStatusEnum.APP_PLANT);
@@ -45,6 +48,7 @@ public class CheckAppStatusJob implements Job {
             }
         }
 
+        //将已经宕机的应用从系统中清除
         for (String appName : deadAppName) {
             ApplicationManager.removeApplication(appName);
             FeedBackToKafka.sendMessage(appName);
