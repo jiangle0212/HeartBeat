@@ -39,7 +39,7 @@ public class CheckAppStatusJob implements Job {
 
                 if (application.getAppStatus().getStatusCode().equals(AppStatusEnum.APP_ALIVE.getStatusCode())) {
                     application.setAppStatus(AppStatusEnum.APP_PLANT);
-                    System.err.println("应用: " + application.getAppName() + "已经变为植物状态");
+                    System.err.println("应用状态： 应用: " + application.getAppName() + "已经变为植物状态");
                 } else if (application.getAppStatus().getStatusCode().equals(AppStatusEnum.APP_PLANT.getStatusCode())) {
                     application.setAppStatus(AppStatusEnum.APP_DEAD);
                     System.err.println("应用: " + application.getAppName() + "已经挂掉了");
@@ -52,7 +52,7 @@ public class CheckAppStatusJob implements Job {
         for (String appName : deadAppName) {
             ApplicationManager.removeApplication(appName);
             FeedBackToKafka.sendMessage(appName);
-            System.err.println("应用: " + appName + "已经从系统清除了");
+            System.err.println("应用状态：应用: " + appName + "已经从系统清除了");
         }
 
     }

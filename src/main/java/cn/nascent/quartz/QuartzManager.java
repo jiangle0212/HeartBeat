@@ -49,7 +49,7 @@ public class QuartzManager {
             scheduler.scheduleJob(jobDetail, trigger);
             scheduler.start();
 
-            System.err.println("任务添加成功");
+            System.err.println("定时任务添加成功");
         } catch (SchedulerException e) {
             System.err.println("定时任务任务添加失败");
             e.printStackTrace();
@@ -85,7 +85,7 @@ public class QuartzManager {
             //删除任务
             scheduler.deleteJob(jobKey);
 
-            System.err.println("任务移除成功");
+            System.err.println("定时任务移除成功");
         } catch (SchedulerException e) {
             System.err.println("定时任务任务移除失败");
             e.printStackTrace();

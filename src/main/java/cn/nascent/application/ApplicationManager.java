@@ -55,10 +55,10 @@ public class ApplicationManager {
         //将应用的状态从plant状态转为alive转状态
         if (application.getAppStatus().equals(AppStatusEnum.APP_PLANT)) {
             application.setAppStatus(AppStatusEnum.APP_ALIVE);
-            System.err.println("应用已从植物状态转为存活状态" + application.getAppName());
+            System.err.println("应用状态：应用已从植物状态转为存活状态" + application.getAppName());
         }
 
-        System.err.println("项目名： " + result[0] + "信息: " + result[1] + "线程名:" + Thread.currentThread().getName());
+        System.err.println("心跳信息： 项目名： " + result[0] + "信息: " + result[1] + "  ==>线程名:" + Thread.currentThread().getName());
         return true;
     }
 
